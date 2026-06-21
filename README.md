@@ -70,7 +70,7 @@ python -c "import requests, unidecode, urllib3; print('✅ All dependencies inst
 ### Basic Command
 
 ```bash
-python OSINT_GOB.MX.py "FirstName PaternalSurname MaternalSurname"
+python OSINT_GOB.MX.py "FirstName Father's Surname Mother's Surname"
 ```
 
 ### Example
