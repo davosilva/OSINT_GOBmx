@@ -1,0 +1,16 @@
+# ============================================================
+# OSINT .GOB.MX - Python Dependencies
+# ============================================================
+# Install with: pip install -r requirements.txt
+
+# HTTP requests for API calls
+# Used for: All API requests to government endpoints
+requests>=2.31.0
+
+# Unicode text normalization (accent removal)
+# Used for: Name normalization and exact matching
+unidecode>=1.3.6
+
+# SSL and connection handling
+# Used for: Bypassing certificate verification in Linux
+urllib3>=2.0.0
