@@ -1,4 +1,4 @@
-# 🕵️ OSINT .GOB.MX
+# 🕵️ OSINT_GOB.MX
 
 **A Python toolkit for querying, correlating, and verifying public information from Mexican government transparency portals.**
 
@@ -7,7 +7,7 @@
 
 ---
 
-## 📌 What is OSINT .GOB.MX?
+## 📌 What is OSINT_GOB.MX?
 
 This project provides a suite of **Open-Source Intelligence (OSINT) tools** designed to automate the retrieval and correlation of public data from multiple Mexican government portals (`.gob.mx`).
 
@@ -23,9 +23,7 @@ It allows you to:
 - **Unified Search**: Query multiple government sources with a single command.
 - **Exact Name Matching**: Search by full name (first name + paternal surname + maternal surname) with accent normalization.
 - **Data Correlation**: Automatically cross-reference results from different databases.
-- **Multi-Source Querying**: Access data from:
-  - **Nomina Transparente** (Public Employee Payroll)
-  - **Datos.gob.mx** (Sanctioned Public Servants)
+- **Multi-Source Querying**: Access data from different GOB.MX applications.
 - **Confidence Scoring**: Classifies matches as `High`, `Medium`, or `Low` confidence.
 - **Structured Output**: Results are presented in a clean, human-readable format with full source tracing.
 
@@ -73,64 +71,20 @@ python -c "import requests, unidecode, urllib3; print('✅ All dependencies inst
 ### Basic Command
 
 ```bash
-python OSINT_GOBMX.py "FirstName PaternalSurname MaternalSurname"
+python OSINT_GOB.MX.py "FirstName PaternalSurname MaternalSurname"
 ```
 
 ### Examples
 
 ```bash
 # Query all sources for a person
-python OSINT_GOBMX.py "Juan Perez Garcia"
+python OSINT_GOB.MX.py "Juan Perez Garcia"
 
 # Query only the salary database
-python OSINT_GOBMX.py "Maria Lopez Hernandez"
+python OSINT_GOB.MX.py "Maria Lopez Hernandez"
 
 # Query only sanctioned public servants
-python OSINT_GOBMX.py "Carlos Ramirez Torres"
-```
-
-### Sample Output
-
-```bash
-======================================================================
-🔍 BUSCANDO: Juan Perez Garcia
-📋 Términos: juan + perez + garcia
-======================================================================
-
-🔍 CONSULTANDO NÓMINA TRANSPARENTE
-======================================================================
-[+] Total de resultados de la API: 1
-[+] Procesando 1 registros...
-
-[✓] Coincidencias EXACTAS encontradas: 1
-----------------------------------------------------------------------
-[1] Nombre       : JUAN PEREZ GARCIA
-    Institución : SECRETARÍA DE HACIENDA
-    Puesto      : DIRECTOR DE ÁREA
-    Sueldo Bruto: $85,234.50 MXN
-    Sueldo Neto : $62,180.30 MXN
-----------------------------------------------------------------------
-
-🔍 CONSULTANDO SERVIDORES PÚBLICOS SANCIONADOS
-======================================================================
-[+] Total de registros con filtros: 1
-[+] Registros obtenidos: 1
-
-[✓] Coincidencias EXACTAS encontradas: 1
-----------------------------------------------------------------------
-[1] Nombre           : JUAN PEREZ GARCIA
-    Expediente      : EXP-2023-001
-    Dependencia     : SECRETARÍA DE HACIENDA
-    Autoridad       : TRIBUNAL DE JUSTICIA ADMINISTRATIVA
-    Sancion Impuesta: INHABILITACIÓN POR 1 AÑO
-    Causa           : INCUMPLIMIENTO DE OBLIGACIONES
-    Fecha Resolución: 2023-01-15
-    Período         : 2023-02-01 - 2024-02-01
-----------------------------------------------------------------------
-
-======================================================================
-✅ BÚSQUEDA COMPLETADA
-======================================================================
+python OSINT_GOB.MX.py "Carlos Ramirez Torres"
 ```
 
 ---
@@ -142,7 +96,7 @@ osint-gobmx/
 ├── .gitignore                  # Files ignored by Git
 ├── README.md                   # This file
 ├── requirements.txt            # Python dependencies
-├── OSINT_GOBMX.py              # Main unified script
+├── OSINT_GOB.MX.py             # Main unified script
 │
 └── docs/                       # Additional documentation
     └── examples.md
@@ -201,15 +155,6 @@ venv\Scripts\activate     # Windows
 
 ---
 
-## 📝 Data Sources
-
-| Portal | Data Type | Endpoint |
-| :--- | :--- | :--- |
-| **Nomina Transparente** | Public employee salaries | `services.buengobierno.gob.mx/nomina/consultas` |
-| **Datos.gob.mx** | Sanctioned public servants | `datos.gob.mx/datatables/ajax/...` |
-
----
-
 ## ⚠️ Disclaimer
 
 > **This tool is intended for ethical and legal use only.**
@@ -230,8 +175,10 @@ Contributions are welcome! Please:
 
 ## 📬 Contact
 
-- **Author**: [Your Name]
-- **GitHub**: [@yourusername](https://github.com/yourusername)
+- **Author**: [David Silva]
+- **GitHub**: [@davosilva](https://github.com/davosilva)
+- **Website**: [zioNETMX](https://www.zionet.com.mx)
+
 
 ---
 
