@@ -74,17 +74,11 @@ python -c "import requests, unidecode, urllib3; print('✅ All dependencies inst
 python OSINT_GOB.MX.py "FirstName PaternalSurname MaternalSurname"
 ```
 
-### Examples
+### Example
 
 ```bash
 # Query all sources for a person
 python OSINT_GOB.MX.py "Juan Perez Garcia"
-
-# Query only the salary database
-python OSINT_GOB.MX.py "Maria Lopez Hernandez"
-
-# Query only sanctioned public servants
-python OSINT_GOB.MX.py "Carlos Ramirez Torres"
 ```
 
 ---
