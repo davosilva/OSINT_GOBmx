@@ -24,7 +24,6 @@ It allows you to:
 - **Exact Name Matching**: Search by full name (first name + paternal surname + maternal surname) with accent normalization.
 - **Data Correlation**: Automatically cross-reference results from different databases.
 - **Multi-Source Querying**: Access data from different GOB.MX applications.
-- **Confidence Scoring**: Classifies matches as `High`, `Medium`, or `Low` confidence.
 - **Structured Output**: Results are presented in a clean, human-readable format with full source tracing.
 
 ---
@@ -178,8 +177,7 @@ Contributions are welcome! Please:
 
 ## ⭐ Acknowledgments
 
-- Mexico's **Plataforma Digital Nacional** for transparency infrastructure.
-- The OSINT community for best practices and methodologies.
+- Mexico's transparency infrastructure/applications.
 - Open-source libraries that made this project possible.
 
 ---
