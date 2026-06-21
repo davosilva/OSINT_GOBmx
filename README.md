@@ -1,109 +1,246 @@
-🛠️ Installation
-1. Clone the repository
-bash
-git clone https://github.com/yourusername/osint-gob-mx.git
-cd osint-gob-mx
-2. Create a virtual environment (recommended)
-Linux / macOS:
+# 🕵️ OSINT .GOB.MX
 
-bash
+**A Python toolkit for querying, correlating, and verifying public information from Mexican government transparency portals.**
+
+[![Python 3.x](https://img.shields.io/badge/python-3.x-blue.svg)](https://www.python.org/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+
+---
+
+## 📌 What is OSINT .GOB.MX?
+
+This project provides a suite of **Open-Source Intelligence (OSINT) tools** designed to automate the retrieval and correlation of public data from multiple Mexican government portals (`.gob.mx`).
+
+It allows you to:
+- **Identify** individuals by full name (first name + paternal surname + maternal surname) across official databases.
+- **Correlate** information from different sources (salaries and sanctions) to build comprehensive profiles.
+- **Confirm** findings with exact-match filtering and source traceability, transforming fragmented open data into actionable intelligence.
+
+---
+
+## 🚀 Key Features
+
+- **Unified Search**: Query multiple government sources with a single command.
+- **Exact Name Matching**: Search by full name (first name + paternal surname + maternal surname) with accent normalization.
+- **Data Correlation**: Automatically cross-reference results from different databases.
+- **Multi-Source Querying**: Access data from:
+  - **Nomina Transparente** (Public Employee Payroll)
+  - **Datos.gob.mx** (Sanctioned Public Servants)
+- **Confidence Scoring**: Classifies matches as `High`, `Medium`, or `Low` confidence.
+- **Structured Output**: Results are presented in a clean, human-readable format with full source tracing.
+
+---
+
+## 🛠️ Installation
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/osint-gobmx.git
+cd osint-gobmx
+```
+
+### 2. Create a Virtual Environment (Recommended)
+
+**Linux / macOS:**
+```bash
 python3 -m venv venv
 source venv/bin/activate
-Windows:
+```
 
-bash
+**Windows:**
+```bash
 python -m venv venv
 venv\Scripts\activate
-3. Install dependencies
-bash
+```
+
+### 3. Install Dependencies
+
+```bash
 pip install -r requirements.txt
-4. Verify installation
-bash
+```
+
+### 4. Verify Installation
+
+```bash
 python -c "import requests, unidecode, urllib3; print('✅ All dependencies installed successfully.')"
-5. Run the script
-bash
-python consulta_completa.py "FirstName PaternalSurname MaternalSurname"
-Example:
+```
 
-bash
-python consulta_completa.py "Juan Perez Garcia"
-6. Exit the virtual environment
-bash
-deactivate
-📦 Dependencies
-Library	Version	Purpose
-requests	>=2.31.0	HTTP requests to government APIs
-unidecode	>=1.3.6	Text normalization (accent removal)
-urllib3	>=2.0.0	SSL and connection handling
-All dependencies are listed in requirements.txt.
+---
 
-🔧 Quick Setup (One-line installation)
-For a complete setup in one go:
+## 📖 Usage
 
-Linux / macOS:
+### Basic Command
 
-bash
-python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt
-Windows:
+```bash
+python OSINT_GOBMX.py "FirstName PaternalSurname MaternalSurname"
+```
 
-bash
-python -m venv venv && venv\Scripts\activate && pip install -r requirements.txt
-🚀 Usage Examples
-bash
-# Search all sources
-python consulta_completa.py "Maria Lopez Hernandez"
+### Examples
 
-# Search only salary database
-python consulta_nomina.py "Juan Perez Garcia"
+```bash
+# Query all sources for a person
+python OSINT_GOBMX.py "Juan Perez Garcia"
 
-# Search sanctioned public servants
-python consulta_sancionados.py "Carlos Ramirez Torres"
-⚙️ Troubleshooting
-SSL Certificate Error (Linux)
-If you encounter SSL certificate errors, add verify=False to the requests.post() call or install system certificates:
+# Query only the salary database
+python OSINT_GOBMX.py "Maria Lopez Hernandez"
 
-bash
+# Query only sanctioned public servants
+python OSINT_GOBMX.py "Carlos Ramirez Torres"
+```
+
+### Sample Output
+
+```bash
+======================================================================
+🔍 BUSCANDO: Juan Perez Garcia
+📋 Términos: juan + perez + garcia
+======================================================================
+
+🔍 CONSULTANDO NÓMINA TRANSPARENTE
+======================================================================
+[+] Total de resultados de la API: 1
+[+] Procesando 1 registros...
+
+[✓] Coincidencias EXACTAS encontradas: 1
+----------------------------------------------------------------------
+[1] Nombre       : JUAN PEREZ GARCIA
+    Institución : SECRETARÍA DE HACIENDA
+    Puesto      : DIRECTOR DE ÁREA
+    Sueldo Bruto: $85,234.50 MXN
+    Sueldo Neto : $62,180.30 MXN
+----------------------------------------------------------------------
+
+🔍 CONSULTANDO SERVIDORES PÚBLICOS SANCIONADOS
+======================================================================
+[+] Total de registros con filtros: 1
+[+] Registros obtenidos: 1
+
+[✓] Coincidencias EXACTAS encontradas: 1
+----------------------------------------------------------------------
+[1] Nombre           : JUAN PEREZ GARCIA
+    Expediente      : EXP-2023-001
+    Dependencia     : SECRETARÍA DE HACIENDA
+    Autoridad       : TRIBUNAL DE JUSTICIA ADMINISTRATIVA
+    Sancion Impuesta: INHABILITACIÓN POR 1 AÑO
+    Causa           : INCUMPLIMIENTO DE OBLIGACIONES
+    Fecha Resolución: 2023-01-15
+    Período         : 2023-02-01 - 2024-02-01
+----------------------------------------------------------------------
+
+======================================================================
+✅ BÚSQUEDA COMPLETADA
+======================================================================
+```
+
+---
+
+## 📂 Project Structure
+
+```
+osint-gobmx/
+├── .gitignore                  # Files ignored by Git
+├── README.md                   # This file
+├── requirements.txt            # Python dependencies
+├── OSINT_GOBMX.py              # Main unified script
+│
+└── docs/                       # Additional documentation
+    └── examples.md
+```
+
+---
+
+## 📦 Dependencies
+
+All dependencies are listed in `requirements.txt`:
+
+| Library | Version | Purpose |
+| :--- | :--- | :--- |
+| `requests` | >=2.31.0 | HTTP requests to government APIs |
+| `unidecode` | >=1.3.6 | Text normalization (accent removal) |
+| `urllib3` | >=2.0.0 | SSL and connection handling |
+
+---
+
+## 🎯 Use Cases
+
+- **Investigative Journalism**: Verify public officials' salaries and sanctions.
+- **Due Diligence**: Background checks on government contractors and suppliers.
+- **Compliance Auditing**: Cross-reference data to identify inconsistencies or risks.
+- **Anti-Corruption**: Map networks between officials and contractors.
+
+---
+
+## 🧪 Troubleshooting
+
+### SSL Certificate Error (Linux)
+
+If you encounter SSL certificate errors, the script includes `verify=False` to bypass this issue. Alternatively, install system certificates:
+
+```bash
 sudo apt-get install ca-certificates
 pip install --upgrade certifi
-ModuleNotFoundError
+```
+
+### ModuleNotFoundError
+
 Make sure you're in the virtual environment:
 
-bash
+```bash
 source venv/bin/activate  # Linux/macOS
 # or
 venv\Scripts\activate     # Windows
-No Results Found
-Verify the name is spelled correctly
+```
 
-Try variations with/without accents
+### No Results Found
 
-Check that the person exists in the public registry
+- Verify the name is spelled correctly.
+- Try variations with/without accents.
+- Check that the person exists in the public registry.
+- The API may require updated CSRF tokens or cookies (for the sanctioned servants endpoint).
 
-🧪 Testing
-To verify everything is working properly:
+---
 
-bash
-# Test dependencies
-python -c "import requests, unidecode, urllib3; print('✅ Dependencies OK')"
+## 📝 Data Sources
 
-# Test a sample search
-python consulta_completa.py "Nalleli Silva Aguila"
-📂 Project Structure After Installation
-text
-osint-gob-mx/
-├── venv/                     # Virtual environment (ignored by git)
-├── requirements.txt          # Dependencies
-├── consulta_completa.py      # Unified search
-├── consulta_nomina.py        # Salary queries
-├── consulta_sancionados.py   # Sanctioned servants
-└── README.md                 # Documentation
-💡 Pro Tip
-Add an alias to your shell configuration for quick access:
+| Portal | Data Type | Endpoint |
+| :--- | :--- | :--- |
+| **Nomina Transparente** | Public employee salaries | `services.buengobierno.gob.mx/nomina/consultas` |
+| **Datos.gob.mx** | Sanctioned public servants | `datos.gob.mx/datatables/ajax/...` |
 
-bash
-# Add to ~/.bashrc or ~/.zshrc
-alias osint-search="python /path/to/osint-gob-mx/consulta_completa.py"
-Then use it like:
+---
 
-bash
-osint-search "Juan Perez Garcia"
+## ⚠️ Disclaimer
+
+> **This tool is intended for ethical and legal use only.**
+> All data accessed is **publicly available** through official government portals. Users are responsible for complying with applicable terms of service and data protection laws. The developers assume no liability for misuse or unauthorized access.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please:
+1. Fork the repository.
+2. Create a feature branch (`git checkout -b feature/amazing-feature`).
+3. Commit your changes (`git commit -m 'Add amazing feature'`).
+4. Push to the branch (`git push origin feature/amazing-feature`).
+5. Open a Pull Request.
+
+---
+
+## 📬 Contact
+
+- **Author**: [Your Name]
+- **GitHub**: [@yourusername](https://github.com/yourusername)
+
+---
+
+## ⭐ Acknowledgments
+
+- Mexico's **Plataforma Digital Nacional** for transparency infrastructure.
+- The OSINT community for best practices and methodologies.
+- Open-source libraries that made this project possible.
+
+---
+
+**Built with ❤️ for transparency, accountability, and open data.**
