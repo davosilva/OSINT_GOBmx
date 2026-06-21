@@ -168,7 +168,7 @@ Contributions are welcome! Please:
 
 ## 📬 Contact
 
-- **Author**: [David Silva]
+- **Author**: [David S.]
 - **GitHub**: [@davosilva](https://github.com/davosilva)
 - **Website**: [zioNETMX](https://www.zionet.com.mx)
 
